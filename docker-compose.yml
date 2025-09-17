@@ -25,6 +25,11 @@ services:
       - APP_DYNAMO_TABLE=${APP_DYNAMO_TABLE:-crediya-reports}
       - APP_DYNAMO_GSI=${APP_DYNAMO_GSI:-metricId-updatedAt-index}
       - APP_DYNAMO_PK=${APP_DYNAMO_PK:-global-report}
+      # Security Configuration (JWT)
+      - SECURITY_SECRET=${SECURITY_SECRET:-QnE1T2lXbVRhV3RzR2VOUXlHaFZ2d2dyU2p2a1R2TnM=}
+      - SECURITY_EXPIRATION_SEC=${SECURITY_EXPIRATION_SEC:-3600}
+      - SECURITY_ISSUER=${SECURITY_ISSUER:-autenticacion-service}
+      - SECURITY_ISSUER_URI=${SECURITY_ISSUER_URI:-}
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/actuator/health"]
       interval: 30s
