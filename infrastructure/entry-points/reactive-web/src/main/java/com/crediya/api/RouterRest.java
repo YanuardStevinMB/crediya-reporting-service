@@ -23,7 +23,7 @@ public class RouterRest {
     @Bean
     @RouterOperations({
             @RouterOperation(
-                    path = "/api/usecase/path",
+                    path = "/api/v1/reports",
                     method = RequestMethod.GET,
                     operation = @Operation(
                             operationId = "getUseCase",
@@ -56,7 +56,7 @@ public class RouterRest {
     })
     public RouterFunction<ServerResponse> routerFunction(Handler handler, 
                                                          GlobalExceptionHandler globalExceptionHandler) {
-        return route(GET("/api/usecase/path"), handler::listenGETUseCase)
+        return route(GET("/api/v1/reports"), handler::listenGETUseCase)
                 .filter(globalExceptionHandler);
     }
 }

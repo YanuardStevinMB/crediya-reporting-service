@@ -19,7 +19,7 @@ springdoc:
     showExtensions: true
     showCommonExtensions: true
   packages-to-scan: com.crediya.api
-  paths-to-match: /api/usecase/path
+  paths-to-match: /api/v1/reports
   cache:
     disabled: true
 

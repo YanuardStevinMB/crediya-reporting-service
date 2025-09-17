@@ -57,7 +57,7 @@ Una vez ejecutado, tendrás acceso a:
 
 ## 📄 Endpoints Documentados
 
-### GET `/api/usecase/path`
+### GET `/api/v1/reports`
 - **Descripción**: Obtener datos del primer caso de uso
 - **Respuestas**: 200 (OK), 400 (Bad Request), 500 (Internal Error)
 

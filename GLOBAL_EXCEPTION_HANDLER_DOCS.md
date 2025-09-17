@@ -61,7 +61,7 @@ Se ha implementado un **Global Exception Handler** completo para el servicio REP
   "message": "Parámetros inválidos",
   "data": null,
   "errors": "Invalid parameter: id cannot be null",
-  "path": "/api/usecase/path",
+  "path": "/api/v1/reports",
   "timestamp": "2025-09-17T15:31:14Z"
 }
 ```
@@ -73,7 +73,7 @@ Se ha implementado un **Global Exception Handler** completo para el servicio REP
   "message": "Parámetros inválidos",
   "data": null,
   "errors": "Invalid parameter: id cannot be null",
-  "path": "/api/usecase/path",
+  "path": "/api/v1/reports",
   "timestamp": "2025-09-17T15:31:14Z",
   "errorCode": "INVALID_ARGUMENT",
   "technicalMessage": "Invalid parameter: id cannot be null",
@@ -98,7 +98,7 @@ Se ha implementado un **Global Exception Handler** completo para el servicio REP
 @Bean
 public RouterFunction<ServerResponse> routerFunction(Handler handler, 
                                                      GlobalExceptionHandler globalExceptionHandler) {
-    return route(GET("/api/usecase/path"), handler::listenGETUseCase)
+    return route(GET("/api/v1/reports"), handler::listenGETUseCase)
             .filter(globalExceptionHandler);
 }
 ```
@@ -147,8 +147,8 @@ Las respuestas de error están automáticamente documentadas:
 
 ### Estructura de Logs
 ```
-WARN  - Illegal argument error - Path: GET /api/usecase/path, Error: Parameter cannot be null
-ERROR - Runtime error - Path: GET /api/usecase/path, Error: Database connection failed
+WARN  - Illegal argument error - Path: GET /api/v1/reports, Error: Parameter cannot be null
+ERROR - Runtime error - Path: GET /api/v1/reports, Error: Database connection failed
 ```
 
 ### Niveles de Logging
@@ -186,7 +186,7 @@ ERROR - Runtime error - Path: GET /api/usecase/path, Error: Database connection 
 ### Prueba Manual
 ```bash
 # Endpoint normal
-curl -X GET http://localhost:8080/api/usecase/path
+curl -X GET http://localhost:8080/api/v1/reports
 
 # Simular error (si el servicio lanza excepción)
 # El GlobalExceptionHandler capturará automáticamente cualquier error

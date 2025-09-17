@@ -59,7 +59,7 @@ public class SwaggerConfig {
         return GroupedOpenApi.builder()
                 .group("reporting")
                 .displayName("Crediya Reporting API")
-                .pathsToMatch("/api/usecase/path")
+                .pathsToMatch("/api/v1/reports")
                 .build();
     }
 

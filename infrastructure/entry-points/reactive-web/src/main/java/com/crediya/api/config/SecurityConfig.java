@@ -37,7 +37,7 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/webjars/**",
                                 "/actuator/**").permitAll()
-                        .pathMatchers(HttpMethod.GET, "/api/usecase/path").permitAll()
+                        .pathMatchers(HttpMethod.GET, "/api/v1/reports").permitAll()
 
 
                         .anyExchange().authenticated()
