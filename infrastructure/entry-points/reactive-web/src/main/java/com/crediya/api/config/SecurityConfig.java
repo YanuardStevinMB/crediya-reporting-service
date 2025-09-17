@@ -37,7 +37,8 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/webjars/**",
                                 "/actuator/**").permitAll()
-                        .pathMatchers(HttpMethod.GET, "/api/usecase/path").hasAnyRole("ADMIN")
+                        .pathMatchers(HttpMethod.GET, "/api/usecase/path").permitAll()
+
 
                         .anyExchange().authenticated()
                 )

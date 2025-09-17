@@ -1,5 +1,7 @@
 package com.crediya.api;
 
+import com.crediya.api.handler.GlobalExceptionHandler;
+import com.crediya.api.dto.ErrorResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -32,12 +34,29 @@ public class RouterRest {
                                     responseCode = "200",
                                     description = "OK",
                                     content = @Content(schema = @Schema(implementation = Object.class))
+                                ),
+                                @ApiResponse(
+                                    responseCode = "400",
+                                    description = "Bad Request - Error de validación",
+                                    content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))
+                                ),
+                                @ApiResponse(
+                                    responseCode = "404",
+                                    description = "Not Found - Recurso no encontrado",
+                                    content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))
+                                ),
+                                @ApiResponse(
+                                    responseCode = "500",
+                                    description = "Internal Server Error - Error interno del servidor",
+                                    content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))
                                 )
                             }
                     )
             )
     })
-    public RouterFunction<ServerResponse> routerFunction(Handler handler) {
-        return route(GET("/api/usecase/path"), handler::listenGETUseCase);
+    public RouterFunction<ServerResponse> routerFunction(Handler handler, 
+                                                         GlobalExceptionHandler globalExceptionHandler) {
+        return route(GET("/api/usecase/path"), handler::listenGETUseCase)
+                .filter(globalExceptionHandler);
     }
 }
